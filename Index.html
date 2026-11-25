@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Page — University Teacher</title>
+<style>
+/* =========================================
+1. БАЗОВЫЕ НАСТРОЙКИ И ПЕРЕМЕННЫЕ (ТЗ п. 2.1, 2.2)
+========================================= /
+:root {
+--primary-navy: #1b365d; / Официальный темно-синий цвет университета /
+--accent-gold: #c59b27; / Акцентный академический цвет /
+--text-dark: #222222;
+--text-muted: #666666;
+--year-gray: #8e9299;
+--bg-white: #ffffff;
+--bg-light: #f7f8fa;
+--footer-gray: #cccccc; / Цвет футера как на макете /
+--placeholder-gray: #969696; / Цвет заглушек фото как на макете */
+--border-color: #333333;
+--container-max: 1200px;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+html {
+scroll-behavior: smooth;
+font-size: 16px;
+}
+
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: var(--text-dark);
+background-color: var(--bg-white);
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+a {
+color: inherit;
+text-decoration: none;
+transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+ul {
+list-style: none;
+}
+
+.container {
+width: 100%;
+max-width: var(--container-max);
+margin: 0 auto;
+padding: 0 24px;
+}
+
+/* =========================================
+2. ШАПКА И НАВИГАЦИЯ (Макеты 1–8)
+========================================= */
+header {
+position: sticky;
+top: 0;
+z-index: 100;
+background-color: rgba(255, 255, 255, 0.96);
+border-bottom: 1px solid #e2e5e9;
+backdrop-filter: blur(6px);
+}
+
+.header-inner {
+display: flex;
+justify-content: space-between;
+align-items: center;
+min-height: 76px;
+gap: 20px;
+flex-wrap: wrap;
+padding: 12px 24px;
+}
+
+.logo {
+font-weight: 700;
+font-size: 1.15rem;
+color: var(--primary-navy);
+letter-spacing: 0.02em;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.logo-badge {
+display: inline-block;
+width: 12px;
+height: 12px;
+background-color: var(--accent-gold);
+border-radius: 2px;
+}
+
+.nav-list {
+display: flex;
+flex-wrap: wrap;
+gap: 24px;
+align-items: center;
+}
+
+.nav-list a {
+font-size: 0.95rem;
+font-weight: 500;
+color: var(--text-dark);
+position: relative;
+padding: 4px 0;
+}
+
+.nav-list a:hover {
+color: var(--primary-navy);
+}
+
+.nav-list a::after {
+content: "";
+position: absolute;
+left: 0;
+bottom: 0;
+width: 0;
+height: 2px;
+background-color: var(--primary-navy);
+transition: width 0.25s ease;
+}
+
+.nav-list a:hover::after {
+width: 100%;
+}
+
+/* =========================================
+3. ТИПОГРАФИКА И ЗАГОЛОВКИ БЛОКОВ (ТЗ п. 2.4)
+========================================= */
+section {
+padding: 80px 0;
+border-bottom: 1px solid #efefef;
+}
+
+.section-title-left {
+font-size: 2rem;
+font-weight: 600;
+color: var(--primary-navy);
+border-left: 3px solid var(--border-color);
+padding-left: 18px;
+line-height: 1.2;
+margin-bottom: 36px;
+}
+
+.section-header-right {
+display: flex;
+justify-content: flex-end;
+margin-bottom: 24px;
+}
+
+.section-title-right {
+font-size: 2rem;
+font-weight: 600;
+color: var(--primary-navy);
+border-right: 3px solid var(--border-color);
+padding-right: 18px;
+line-height: 1.2;
+text-align: right;
+}
+
+.sub-divider {
+display: flex;
+align-items: center;
+gap: 16px;
+margin: 32px 0 40px;
+}
+
+.sub-divider h3 {
+font-size: 0.95rem;
+font-weight: 600;
+color: var(--text-dark);
+white-space: nowrap;
+}
+
+.sub-divider::after {
+content: "";
+flex: 1;
+height: 1.5px;
+background-color: var(--border-color);
+}
+
+/* =========================================
+4. HERO SECTION (Макет 1 + ТЗ п. 1.1, 1.3)
+========================================= */
+.hero {
+padding: 0;
+border-bottom: 1px solid #e2e5e9;
+}
+
+.hero-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+min-height: 540px;
+align-items: center;
+}
+
+.hero-content {
+padding: 60px 48px 60px max(24px, calc((100vw - var(--container-max)) / 2 + 24px));
+}
+
+.hero-content h1 {
+font-size: clamp(2.1rem, 3.5vw, 3rem);
+font-weight: 700;
+line-height: 1.18;
+color: var(--primary-navy);
+margin-bottom: 24px;
+}
+
+.hero-meta {
+margin-bottom: 24px;
+color: var(--text-dark);
+font-size: 1rem;
+}
+
+.hero-meta li {
+margin-bottom: 6px;
+}
+
+.hero-meta strong {
+color: var(--primary-navy);
+}
+
+.read-more-link {
+display: inline-flex;
+align-items: center;
+gap: 18px;
+margin-top: 20px;
+font-weight: 600;
+font-size: 1rem;
+color: var(--primary-navy);
+}
+
+.read-more-link .arrow {
+display: inline-block;
+width: 56px;
+height: 1.5px;
+background-color: var(--border-color);
+position: relative;
+transition: width 0.25s ease;
+}
+
+.read-more-link .arrow::after {
+content: "";
+position: absolute;
+right: 0;
+top: -4px;
+width: 9px;
+height: 9px;
+border-top: 1.5px solid var(--border-color);
+border-right: 1.5px solid var(--border-color);
+transform: rotate(45deg);
+}
+
+.read-more-link:hover .arrow {
+width: 72px;
+}
+
+.hero-image-box {
+width: 100%;
+height: 100%;
+min-height: 460px;
+background-color: var(--placeholder-gray);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+color: #ffffff;
+text-align: center;
+padding: 24px;
+}
+
+.hero-image-box svg {
+width: 64px;
+height: 64px;
+margin-bottom: 12px;
+opacity: 0.85;
+}
+
+/* =========================================
+5. ABOUT ME (Макет 2)
+========================================= */
+.about-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 48px 56px;
+align-items: center;
+}
+
+.about-list {
+list-style: disc;
+padding-left: 20px;
+color: var(--text-dark);
+}
+
+.about-list li {
+margin-bottom: 10px;
+}
+
+.media-placeholder {
+width: 100%;
+height: 230px;
+background-color: var(--placeholder-gray);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #ffffff;
+font-size: 0.9rem;
+letter-spacing: 0.03em;
+}
+
+/* =========================================
+6. ACHIEVEMENTS (Макеты 3, 4, 5 + ТЗ п. 1.5, 1.6)
+========================================= */
+.timeline-row {
+display: grid;
+grid-template-columns: 140px 1fr;
+gap: 24px;
+align-items: baseline;
+margin-bottom: 32px;
+padding-left: 24px;
+}
+
+.timeline-year {
+font-size: 1.75rem;
+font-weight: 500;
+color: var(--year-gray);
+}
+
+.timeline-desc {
+font-size: 0.98rem;
+color: var(--text-dark);
+max-width: 720px;
+}
+
+.awards-top-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 28px;
+margin-bottom: 28px;
+padding: 0 24px;
+}
+
+.award-card-vertical {
+aspect-ratio: 3 / 4;
+background-color: var(--placeholder-gray);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #fff;
+font-size: 0.85rem;
+text-align: center;
+padding: 12px;
+border: 1px solid #7f7f7f;
+}
+
+.awards-bottom-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 28px;
+max-width: 920px;
+margin: 0 auto 48px;
+padding: 0 24px;
+}
+
+.award-card-horizontal {
+aspect-ratio: 4 / 3;
+background-color: var(--placeholder-gray);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #fff;
+font-size: 0.85rem;
+text-align: center;
+padding: 12px;
+border: 1px solid #7f7f7f;
+}
+
+.icon-list {
+display: flex;
+flex-direction: column;
+gap: 20px;
+padding-left: 48px;
+}
+
+.icon-list-item {
+display: flex;
+align-items: flex-start;
+gap: 16px;
+}
+
+.doc-badge {
+flex-shrink: 0;
+width: 24px;
+height: 30px;
+border: 1.8px solid var(--border-color);
+border-radius: 5px;
+background-color: var(--bg-white);
+box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15);
+margin-top: 2px;
+}
+
+.icon-list-item a {
+color: var(--primary-navy);
+text-decoration: underline;
+text-underline-offset: 3px;
+font-weight: 500;
+}
+
+.icon-list-item a:hover {
+color: var(--accent-gold);
+}
+
+/* =========================================
+7. EXPERIENCE (Макет 6)
+========================================= */
+.experience-list {
+padding-left: 24px;
+display: flex;
+flex-direction: column;
+gap: 32px;
+}
+
+.exp-item h3 {
+font-size: 1.75rem;
+font-weight: 500;
+color: var(--year-gray);
+margin-bottom: 8px;
+}
+
+.exp-item p {
+max-width: 760px;
+color: var(--text-dark);
+}
+
+/* =========================================
+8. EDUCATIONAL WORK + КОНСУЛЬТАЦИИ (Макет 7 + ТЗ п. 1.4)
+========================================= */
+.two-col-icon-list {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px 48px;
+padding: 0 48px;
+}
+
+.consultation-box {
+margin: 48px 48px 0;
+padding: 24px 28px;
+background-color: var(--bg-light);
+border-left: 4px solid var(--primary-navy);
+}
+
+.consultation-box h3 {
+font-size: 1.15rem;
+color: var(--primary-navy);
+margin-bottom: 12px;
+}
+
+.consultation-list {
+list-style: disc;
+padding-left: 20px;
+}
+
+.consultation-list li {
+margin-bottom: 6px;
+}
+
+/* =========================================
+10. CONTACT / FOOTER (Макет 9 + ТЗ п. 1.2)
+========================================= */
+footer {
+background-color: var(--footer-gray);
+padding: 64px 0 72px;
+color: var(--text-dark);
+}
+
+.footer-grid {
+display: grid;
+grid-template-columns: 160px 1fr 1.2fr;
+gap: 40px;
+align-items: start;
+}
+
+.footer-logo {
+font-weight: 600;
+font-size: 1.05rem;
+color: var(--text-dark);
+}
+
+.footer-contacts h2,
+.footer-form-wrap h2 {
+font-size: 1.55rem;
+font-weight: 700;
+margin-bottom: 22px;
+color: var(--text-dark);
+}
+
+.footer-contacts ul li {
+margin-bottom: 14px;
+font-size: 1rem;
+}
+
+.footer-contacts a:hover {
+text-decoration: underline;
+}
+
+.contact-form {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 28px 32px;
+align-items: end;
+}
+
+.form-field {
+display: flex;
+flex-direction: column;
+}
+
+.form-field label {
+font-size: 0.9rem;
+margin-bottom: 6px;
+color: var(--text-dark);
+}
+
+.form-field input {
+background: transparent;
+border: none;
+border-bottom: 1.5px solid var(--border-color);
+padding: 6px 2px;
+font-size: 0.95rem;
+font-family: inherit;
+color: var(--text-dark);
+outline: none;
+}
+
+.form-field input:focus {
+border-bottom-color: var(--primary-navy);
+}
+
+.btn-send {
+justify-self: start;
+background-color: var(--placeholder-gray);
+color: var(--text-dark);
+border: none;
+padding: 14px 36px;
+font-size: 0.95rem;
+font-weight: 500;
+cursor: pointer;
+transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-send:hover {
+background-color: var(--primary-navy);
+color: #ffffff;
+}
+
+/* =========================================
+11. СТИЛИ ДЛЯ НАВИГАЦИИ ПО DOM-ДЕРЕВУ (JS)
+========================================= */
+.dom-walker-highlight {
+outline: 3px solid var(--accent-gold) !important;
+outline-offset: -3px;
+background-color: rgba(197, 155, 39, 0.08) !important;
+transition: outline 0.2s ease, background-color 0.2s ease;
+}
+
+.dom-walker-trigger {
+position: fixed;
+right: 20px;
+bottom: 20px;
+z-index: 999;
+background-color: var(--primary-navy);
+color: #ffffff;
+border: 2px solid var(--accent-gold);
+border-radius: 8px;
+padding: 12px 18px;
+font-size: 0.9rem;
+font-weight: 600;
+cursor: pointer;
+box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.dom-walker-trigger:hover {
+background-color: #132744;
+}
+
+/* =========================================
+12. АДАПТИВНОСТЬ 320px — 1920px+ (ТЗ п. 2.2)
+========================================= */
+@media (max-width: 992px) {
+.hero-grid {
+grid-template-columns: 1fr;
+}
+
+.hero-content {
+padding: 48px 24px;
+}
+
+.hero-image-box {
+min-height: 340px;
+}
+
+.about-grid {
+grid-template-columns: 1fr;
+gap: 28px;
+}
+
+.awards-top-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.awards-bottom-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.two-col-icon-list {
+grid-template-columns: 1fr;
+padding: 0 16px;
+}
+
+.footer-grid {
+grid-template-columns: 1fr;
+gap: 32px;
+}
+}
+
+@media (max-width: 600px) {
+section {
+padding: 52px 0;
+}
+
+.nav-list {
+gap: 12px 16px;
+}
+
+.nav-list a {
+font-size: 0.88rem;
+}
+
+.timeline-row {
+grid-template-columns: 1fr;
+gap: 6px;
+padding-left: 0;
+}
+
+.awards-top-grid,
+.awards-bottom-grid {
+grid-template-columns: 1fr;
+padding: 0;
+}
+
+.icon-list {
+padding-left: 0;
+}
+
+.consultation-box {
+margin: 32px 0 0;
+padding: 18px;
+}
+
+.contact-form {
+grid-template-columns: 1fr;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- НАВИГАЦИЯ (Макет 1–8) -->
+<header>
+<div class="container header-inner">
+<a href="#top" class="logo">
+<span class="logo-badge"></span>
+<span>UMSF • Teacher Portal</span>
+</a>
+<nav aria-label="Primary Navigation">
+<ul class="nav-list">
+<li><a href="#about">About me</a></li>
+<li><a href="#achievements">Achievements</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#educational-work">Educational work</a></li>
+<li><a href="#materials">Materials</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<main id="top">
+<!-- 1. ПЕРВЫЙ ЭКРАН / HERO (Макет 1 + ТЗ п. 1.1, 1.3) -->
+<section class="hero">
+<div class="hero-grid">
+<div class="hero-content">
+<h1>Personal page<br>for university teacher</h1>
+<ul class="hero-meta">
+<li><strong>Full Name:</strong> Firsov Oleksandr Dmytrovych</li>
+<li><strong>Position:</strong> Associate Professor, Department of Computer Science and Software Engineering</li>
+<li><strong>Academic Degree & Title:</strong> PhD in Technical Sciences, Associate Professor</li>
+<li><strong>University:</strong> University of Customs and Finance (Dnipro)</li>
+</ul>
+<a href="#about" class="read-more-link">
+<span>Read more</span>
+<span class="arrow" aria-hidden="true"></span>
+</a>
+</div>
+<div class="hero-image-box" role="img" aria-label="Portrait photo of the university teacher">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+<circle cx="12" cy="8" r="4"></circle>
+<path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+</svg>
+<span>Portrait Photo Placeholder (3:4 / Full Height)</span>
+</div>
+</div>
+</section>
+
+<!-- 2. ABOUT ME (Макет 2) -->
+<section id="about">
+<div class="container">
+<h2 class="section-title-left">About me</h2>
+<div class="about-grid">
+<div>
+<ul class="about-list">
+<li>Specialist in web technologies, software architecture, and modern frontend engineering.</li>
+<li>Over 12 years of teaching and mentoring students in computer science programs.</li>
+<li>Supervisor of bachelor's and master's qualification theses in software engineering.</li>
+</ul>
+</div>
+<div class="media-placeholder">University Department / Lecture Hall Photo</div>
+
+<div class="media-placeholder">Scientific Research & Conference Photo</div>
+<div>
+<ul class="about-list">
+<li>Research focus: distributed web systems, UI/UX accessibility, and cloud computing.</li>
+<li>Active participant in international academic mobility programs and IT workshops.</li>
+<li>Coordinator of student hackathons and applied programming clubs.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 3. ACHIEVEMENTS (Макеты 3, 4, 5 + ТЗ п. 1.5, 1.6) -->
+<section id="achievements">
+<div class="container">
+<div class="section-header-right">
+<h2 class="section-title-right">Achievements</h2>
+</div>
+
+<div class="sub-divider">
+<h3>Educational establishments</h3>
+</div>
+
+<div class="timeline-row">
+<div class="timeline-year">2000</div>
+<div class="timeline-desc">
+Graduated with honors in Computer Science and Applied Mathematics, obtaining a Master's degree in Information Systems.
+</div>
+</div>
+
+<div class="timeline-row">
+<div class="timeline-year">2007</div>
+<div class="timeline-desc">
+Completed postgraduate studies and defended PhD dissertation in Information Technologies and System Analysis.
+</div>
+</div>
+
+<div class="timeline-row">
+<div class="timeline-year">2010</div>
+<div class="timeline-desc">
+Awarded the academic title of Associate Professor at the Department of Computer Science and Software Engineering.
+</div>
+</div>
+
+<div class="sub-divider">
+<h3>Awards / diplomas / certificates</h3>
+</div>
+
+<div class="awards-top-grid">
+<div class="award-card-vertical">Diploma of Honor<br>Ministry of Education</div>
+<div class="award-card-vertical">AWS Academy<br>Educator Certificate</div>
+<div class="award-card-vertical">International Web<br>Engineering Fellowship</div>
+<div class="award-card-vertical">Best Lecturer Award<br>Faculty of IT</div>
+</div>
+
+<div class="awards-bottom-grid">
+<div class="award-card-horizontal">Scopus Reviewer Recognition Certificate</div>
+<div class="award-card-horizontal">Google Cloud Academic Training Certificate</div>
+<div class="award-card-horizontal">EU Erasmus+ Teaching Mobility Diploma</div>
+</div>
+
+<div class="sub-divider">
+<h3>Scientific articles / publications / books</h3>
+</div>
+
+<ul class="icon-list">
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<div>
+<a href="https://scholar.google.com" target="_blank" rel="noopener">
+2025 — Architecture of Responsive Single-Page Academic Portals (Journal of Information Systems, PDF)
+</a>
+</div>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<div>
+<a href="https://www.scopus.com" target="_blank" rel="noopener">
+2024 — Accessibility Standards WCAG 2.2 in University Web Ecosystems (Scopus Indexed Conference Paper)
+</a>
+</div>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<div>
+<a href="https://orcid.org" target="_blank" rel="noopener">
+2023 — Modern HTML5 & CSS3 Layout Patterns: Textbook for Software Engineering Students (University Repository)
+</a>
+</div>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<div>
+<a href="https://scholar.google.com" target="_blank" rel="noopener">
+2022 — Performance Optimization of Static Web Applications on Cloud Hosting (Scientific Bulletin, PDF)
+</a>
+</div>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<div>
+<a href="https://orcid.org" target="_blank" rel="noopener">
+2021 — Fundamentals of Client-Side Web Programming: Methodological Manual (Digital Archive)
+</a>
+</div>
+</li>
+</ul>
+</div>
+</section>
+
+<!-- 4. EXPERIENCE (Макет 6) -->
+<section id="experience">
+<div class="container">
+<h2 class="section-title-left">Experience</h2>
+<div class="experience-list">
+<article class="exp-item">
+<h3>2010–2012</h3>
+<p>
+Senior Lecturer at the Department of Information Systems. Developed laboratory courses on structured programming, databases, and computer networks.
+</p>
+</article>
+
+<article class="exp-item">
+<h3>2015–2021</h3>
+<p>
+Associate Professor and Curriculum Coordinator for the Software Engineering bachelor's program. Introduced modern web development tracks and project-based learning.
+</p>
+</article>
+
+<article class="exp-item">
+<h3>2023–Present</h3>
+<p>
+Associate Professor at the University of Customs and Finance, Faculty of Innovative Technologies. Leading courses in Web Programming and Frontend Architecture.
+</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- 5. EDUCATIONAL WORK + ГРАФИК КОНСУЛЬТАЦИЙ (Макет 7 + ТЗ п. 1.4) -->
+<section id="educational-work">
+<div class="container">
+<div class="section-header-right">
+<h2 class="section-title-right">Educational work</h2>
+</div>
+
+<div class="sub-divider">
+<h3>Courses / subjects / disciplines</h3>
+</div>
+
+<ul class="two-col-icon-list">
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<span>Web Programming (HTML5, CSS3, Responsive Design)</span>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<span>Human-Computer Interaction & UI/UX Prototyping</span>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<span>Frontend Frameworks and Component Architecture</span>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<span>Web Accessibility and Cross-Browser Compatibility</span>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<span>Cloud Deployment and Static Web Hosting</span>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<span>Software Engineering Project Practicum</span>
+</li>
+</ul>
+
+<div class="consultation-box">
+<h3>Student Consultation Schedule</h3>
+<ul class="consultation-list">
+<li><strong>Tuesday:</strong> 14:00 – 15:30, Building 1, Room 405</li>
+<li><strong>Thursday:</strong> 15:45 – 17:00, Building 1, Room 405 (or online via Microsoft Teams)</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- 6. MATERIALS (Макет 8 + ТЗ п. 1.5, 1.6) -->
+<section id="materials">
+<div class="container">
+<h2 class="section-title-left">Materials</h2>
+<ul class="icon-list">
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<a href="#materials">Syllabus: Web Programming Discipline (2026 Academic Year, PDF)</a>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<a href="#materials">Lecture Notes 01–06: Semantic HTML5 & CSS Grid/Flexbox Layouts (PDF)</a>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<a href="#materials">Laboratory Work Guidelines: Creating Technical Requirements & Wireframes (PDF)</a>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<a href="#materials">Checklist for Responsive Web Design Testing (320px – 1920px, PDF)</a>
+</li>
+<li class="icon-list-item">
+<span class="doc-badge" aria-hidden="true"></span>
+<a href="#materials">Guide to Deploying Static Websites on Free Cloud Hosting (GitHub Pages / Netlify, PDF)</a>
+</li>
+</ul>
+</div>
+</section>
+</main>
+
+<!-- 7. CONTACT / FOOTER (Макет 9 + ТЗ п. 1.2) -->
+<footer id="contact">
+<div class="container footer-grid">
+<div class="footer-logo">logo</div>
+
+<div class="footer-contacts">
+<h2>My contacts</h2>
+<ul>
+<li><a href="tel:+380123456789">+380 12 345 6789</a></li>
+<li><a href="mailto:o.firsov@umsf.dp.ua">o.firsov@umsf.dp.ua</a></li>
+<li>Dnipro, Volodymyra Vernadskoho St, 2/4</li>
+</ul>
+</div>
+
+<div class="footer-form-wrap">
+<h2>For your questions</h2>
+<form class="contact-form" action="mailto:o.firsov@umsf.dp.ua" method="post" enctype="text/plain">
+<div class="form-field">
+<label for="user-name">Name</label>
+<input type="text" id="user-name" name="name" required>
+</div>
+
+<div class="form-field">
+<label for="user-email">Email</label>
+<input type="email" id="user-email" name="email" required>
+</div>
+
+<div class="form-field">
+<label for="user-text">Text</label>
+<input type="text" id="user-text" name="message" required>
+</div>
+
+<button type="submit" class="btn-send">Send</button>
+</form>
+</div>
+</div>
+</footer>
+
+<!-- Кнопка повторного запуска обхода DOM-дерева -->
+<button type="button" class="dom-walker-trigger" id="startDomWalkBtn">
+Обход DOM-дерева
+</button>
+
+<!-- СКРИПТ ОБХОДА DOM-ДЕРЕВА НА ОСНОВЕ CALLBACK-ФУНКЦИЙ -->
+<script>
+(function () {
+/**
+* Собирает линейный маршрут по узлам DOM-дерева страницы
+* в соответствии со структурой документа.
+*/
+function collectDomNodes() {
+const selectors = [
+"html",
+"head",
+"title",
+"body",
+"header",
+"header .logo",
+"header nav",
+"main",
+"section.hero",
+"section.hero h1",
+"section#about",
+"section#achievements",
+"section#experience",
+"section#educational-work",
+"section#materials",
+"footer#contact",
+"footer#contact .footer-contacts",
+"footer#contact .contact-form"
+ ];
+
+const nodes = [];
+selectors.forEach(function (selector) {
+const el = document.querySelector(selector);
+if (el) {
+nodes.push(el);
+}
+});
+return nodes;
+}
+
+/**
+* Формирует читаемое описание текущего DOM-узла и его содержимого.
+*/
+function describeNode(node) {
+const tag = "<" + node.tagName.toLowerCase() + ">";
+const idPart = node.id ? "#" + node.id : "";
+const classList = typeof node.className === "string" && node.className.trim()
+? "." + node.className.trim().replace("dom-walker-highlight", "").trim().split(/\s+/).join(".")
+: "";
+
+let contentPreview = "";
+if (node.tagName === "HTML" || node.tagName === "BODY" || node.tagName === "MAIN") {
+contentPreview = "Контейнерный узел (дочерних элементов: " + node.children.length + ")";
+} else if (node.tagName === "HEAD") {
+contentPreview = "Служебный раздел документа (meta, title, style)";
+} else {
+const rawText = (node.innerText || node.textContent || "").replace(/\s+/g, " ").trim();
+contentPreview = rawText
+? (rawText.length > 120 ? rawText.slice(0, 120) + "..." : rawText)
+: "(пустой текстовый узел)";
+}
+
+return (
+"Тег: " + tag + idPart + (classList !== "." ? classList : "") + "\n" +
+"Содержимое: " + contentPreview
+);
+}
+
+let currentHighlighted = null;
+
+function highlightNode(node) {
+if (currentHighlighted) {
+currentHighlighted.classList.remove("dom-walker-highlight");
+}
+if (node && node.tagName !== "HTML" && node.tagName !== "HEAD" && node.tagName !== "TITLE") {
+node.classList.add("dom-walker-highlight");
+node.scrollIntoView({ behavior: "smooth", block: "center" });
+currentHighlighted = node;
+}
+}
+
+function clearHighlight() {
+if (currentHighlighted) {
+currentHighlighted.classList.remove("dom-walker-highlight");
+currentHighlighted = null;
+}
+}
+
+/**
+* Основная функция посещения узла с использованием функций обратного вызова (callbacks).
+*
+* @param {Array<Element>} nodes - массив узлов DOM
+* @param {number} index - индекс текущего узла
+* @param {Function} onNext - callback перехода к следующему узлу
+* @param {Function} onPrev - callback возврата к предыдущему узлу
+* @param {Function} onExit - callback завершения работы
+*/
+function visitNode(nodes, index, onNext, onPrev, onExit) {
+const node = nodes[index];
+const total = nodes.length;
+const header = "Узел [" + (index + 1) + " из " + total + "]\n" + describeNode(node) + "\n\n";
+
+highlightNode(node);
+
+// Даём браузеру 150 мс отрисовать рамку и прокрутку перед модальным окном
+setTimeout(function () {
+// 1. Первый (верхний) узел
+if (index === 0) {
+const goForward = confirm(
+header +
+"Это первый узел DOM-дерева.\n" +
+"Нажмите «ОК», чтобы продвинуться к следующему узлу, или «Отмена», чтобы завершить работу."
+);
+if (goForward) {
+onNext();
+} else {
+onExit();
+}
+return;
+}
+
+// 2. Последний (нижний) узел
+if (index === total - 1) {
+const goBack = confirm(
+header +
+"Это нижний (конечный) узел DOM-дерева.\n" +
+"Нажмите «ОК», чтобы вернуться назад, или «Отмена», чтобы выйти."
+);
+if (goBack) {
+onPrev();
+} else {
+onExit();
+}
+return;
+}
+
+// 3. Промежуточный узел: выбор направления (вперёд, назад или выход)
+const choice = prompt(
+header +
+"Выберите действие:\n" +
+"1 — Пройти дальше (к следующему узлу)\n" +
+"2 — Вернуться назад (к предыдущему узлу)\n" +
+"Отмена — Завершить работу",
+"1"
+);
+
+if (choice === null) {
+onExit();
+} else if (choice.trim() === "1") {
+onNext();
+} else if (choice.trim() === "2") {
+onPrev();
+} else {
+alert("Некорректный ввод. Введите 1, 2 или нажмите «Отмена».");
+visitNode(nodes, index, onNext, onPrev, onExit);
+}
+}, 150);
+}
+
+/**
+* Инициализация и запуск обхода DOM-дерева.
+*/
+function startDomTraversal() {
+const nodes = collectDomNodes();
+if (!nodes.length) return;
+
+function finishTraversal() {
+clearHighlight();
+alert("Обход DOM-дерева завершён.");
+}
+
+function stepTo(targetIndex) {
+visitNode(
+nodes,
+targetIndex,
+function handleNext() {
+stepTo(targetIndex + 1);
+},
+function handlePrev() {
+stepTo(targetIndex - 1);
+},
+finishTraversal
+);
+}
+
+stepTo(0);
+}
+
+// Привязка к кнопке на странице
+const startBtn = document.getElementById("startDomWalkBtn");
+if (startBtn) {
+startBtn.addEventListener("click", startDomTraversal);
+}
+
+// Автоматический старт после полной загрузки страницы
+window.addEventListener("load", function () {
+setTimeout(startDomTraversal, 800);
+});
+})();
+</script>
+
+</body>
+</html>
